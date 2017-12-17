@@ -33,12 +33,18 @@ class App extends Component {
     const { player, computer, winner } = this.state;
     return (
       <div className="App">
-        <div className="playerStatus">
+        <div
+          className="playerStatus"
+          style={winner && winner === 'computer' ? styles.loser : []}
+        >
           <strong>You</strong>
           <Bullet loaded={player.loaded} />
           <LastAction action={player.lastAction} />
         </div>
-        <div className="playerStatus">
+        <div
+          className="playerStatus"
+          style={winner && winner === 'player' ? styles.loser : []}
+        >
           <strong>Enemy</strong>
           <Bullet loaded={computer.loaded} />
           <LastAction action={computer.lastAction} />
@@ -58,6 +64,14 @@ class App extends Component {
         </div>
       </div>
     );
+  }
+}
+
+
+const styles = {
+  loser: {
+    backgroundColor: 'red',
+    color: 'white'
   }
 }
 
