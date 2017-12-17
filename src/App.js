@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Commands } from './components';
+import { Commands, Bullet } from './components';
+
+const INITIAL_STATE = {
+  winner: null,
+  player: {
+    loaded: false
+  },
+  computer: {
+    loaded: false
+  }
+};
 
 class App extends Component {
   state = {
@@ -11,7 +21,7 @@ class App extends Component {
     computer: {
       loaded: false
     }
-  }
+  };
 
   postAction(newState) {
     this.setState(newState);
@@ -22,14 +32,25 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-intro">
-          <h1>Your gun {player.loaded ? 'LOADED' : 'NOT LOADED'}</h1>
-          <h1>His gun {computer.loaded ? 'LOADED' : 'NOT LOADED'}</h1>
+          <div>
+            <strong>You</strong>
+            <Bullet loaded={player.loaded} />
+          </div>
+          <div>
+            <strong>Enemy</strong>
+            <Bullet loaded={computer.loaded} />
+          </div>
           {
             !winner &&
             <Commands postAction={newState => this.postAction(newState)} player={player} computer={computer} />
           }
 
-          {winner && <h1>{winner.toUpperCase()} Won</h1>}
+          {winner && (
+            <div>
+              <h1>{winner.toUpperCase()} Won</h1>
+              <button onClick={() => this.setState(INITIAL_STATE)}>Restart</button>
+            </div>
+          )}
         </div>
       </div>
     );
