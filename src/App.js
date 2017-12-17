@@ -33,17 +33,17 @@ class App extends Component {
     const { player, computer, winner } = this.state;
     return (
       <div className="App">
-        <div className="App-intro">
-          <div className="playerStatus">
-            <strong>You</strong>
-            <Bullet loaded={player.loaded} />
-            <LastAction action={player.lastAction} />
-          </div>
-          <div className="playerStatus">
-            <strong>Enemy</strong>
-            <Bullet loaded={computer.loaded} />
-            <LastAction action={computer.lastAction} />
-          </div>
+        <div className="playerStatus">
+          <strong>You</strong>
+          <Bullet loaded={player.loaded} />
+          <LastAction action={player.lastAction} />
+        </div>
+        <div className="playerStatus">
+          <strong>Enemy</strong>
+          <Bullet loaded={computer.loaded} />
+          <LastAction action={computer.lastAction} />
+        </div>
+        <div className="controls">
           {
             !winner &&
             <Commands postAction={newState => this.postAction(newState)} player={player} computer={computer} />
@@ -51,7 +51,7 @@ class App extends Component {
 
           {winner && (
             <div>
-              <h1>{winner.toUpperCase()} Won</h1>
+              <strong>{winner.toUpperCase()} Won</strong>
               <button onClick={() => this.setState(INITIAL_STATE)}>Restart</button>
             </div>
           )}
