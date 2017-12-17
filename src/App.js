@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { resolveActions, ATTACK, DEFEND, RELOAD } from './lib';
-import logo from './logo.svg';
 import './App.css';
+import { Commands } from './components';
 
 class App extends Component {
   state = {
@@ -13,6 +12,11 @@ class App extends Component {
       loaded: false
     }
   }
+
+  postAction(newState) {
+    this.setState(newState);
+  }
+
   render() {
     const { player, computer, winner } = this.state;
     return (
@@ -22,14 +26,10 @@ class App extends Component {
           <h1>His gun {computer.loaded ? 'LOADED' : 'NOT LOADED'}</h1>
           {
             !winner &&
-            (
-              <div>
-                <button disabled={!player.loaded} onClick={() => this.setState(resolveActions(ATTACK, { player, computer }))}>Shoot</button>
-                <button onClick={() => this.setState(resolveActions(RELOAD, { player, computer }))}>Reload</button>
-                <button onClick={() => this.setState(resolveActions(DEFEND, { player, computer }))}>Dodge</button>
-              </div>
-            )
+            <Commands postAction={newState => this.postAction(newState)} player={player} computer={computer} />
           }
+
+          {winner && <h1>{winner.toUpperCase()} Won</h1>}
         </div>
       </div>
     );
