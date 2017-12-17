@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Commands, Bullet } from './components';
+import { Commands, Bullet, LastAction } from './components';
 
 const INITIAL_STATE = {
   winner: null,
   player: {
-    loaded: false
+    loaded: false,
+    lastAction: null,
   },
   computer: {
-    loaded: false
+    loaded: false,
+    lastAction: null
   }
 };
 
@@ -35,10 +37,12 @@ class App extends Component {
           <div>
             <strong>You</strong>
             <Bullet loaded={player.loaded} />
+            <LastAction action={player.lastAction} />
           </div>
           <div>
             <strong>Enemy</strong>
             <Bullet loaded={computer.loaded} />
+            <LastAction action={computer.lastAction} />
           </div>
           {
             !winner &&

@@ -13,38 +13,37 @@ const randomizer = {
 export const ATTACK = "ATTACK";
 export const RELOAD = "RELOAD";
 export const DEFEND = "DEFEND";
-const MOVES = [ATTACK, DEFEND, RELOAD];
 
 const RESOLVE_MATRIX = {
   [ATTACK]: {
-    [ATTACK]: function (context) {
+    [ATTACK]: function () {
       return { player: { loaded: false }, computer: { loaded: false } };
     },
-    [DEFEND]: function (context) {
+    [DEFEND]: function () {
       return { player: { loaded: false } };
     },
-    [RELOAD]: function (context) {
+    [RELOAD]: function () {
       return { winner: 'player' };
     }
   },
   [DEFEND]: {
-    [ATTACK]: function (context) {
+    [ATTACK]: function () {
       return { computer: { loaded: false } };
     },
     [DEFEND]: function () {
     },
-    [RELOAD]: function (context) {
+    [RELOAD]: function () {
       return { computer: { loaded: true } };
     }
   },
   [RELOAD]: {
-    [ATTACK]: function (context) {
+    [ATTACK]: function () {
       return { winner: 'computer' };
     },
-    [DEFEND]: function (context) {
+    [DEFEND]: function () {
       return { player: { loaded: true } };
     },
-    [RELOAD]: function (context) {
+    [RELOAD]: function () {
       return {
         player: { loaded: true }, computer: { loaded: true }
       }
@@ -62,7 +61,12 @@ const getCpuMove = context => {
 
 export const resolveActions = (playerMove, context) => {
   const cpuMove = getCpuMove(context);
-  const stuff = RESOLVE_MATRIX[playerMove][cpuMove](context);
-  console.log(stuff, playerMove, cpuMove);
-  return stuff;
+  const actionsResult = RESOLVE_MATRIX[playerMove][cpuMove](context);
+  const player = actionsResult.player || {};
+  const computer = actionsResult.computer || {};
+  return {
+    ...actionsResult,
+    player: { ...player, lastAction: playerMove },
+    computer: { ...computer, lastAction: cpuMove }
+  };
 };
