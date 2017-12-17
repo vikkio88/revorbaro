@@ -34,12 +34,12 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-intro">
-          <div>
+          <div className="playerStatus">
             <strong>You</strong>
             <Bullet loaded={player.loaded} />
             <LastAction action={player.lastAction} />
           </div>
-          <div>
+          <div className="playerStatus">
             <strong>Enemy</strong>
             <Bullet loaded={computer.loaded} />
             <LastAction action={computer.lastAction} />

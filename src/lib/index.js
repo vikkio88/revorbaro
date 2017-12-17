@@ -31,6 +31,7 @@ const RESOLVE_MATRIX = {
       return { computer: { loaded: false } };
     },
     [DEFEND]: function () {
+      return {};
     },
     [RELOAD]: function () {
       return { computer: { loaded: true } };
@@ -62,8 +63,8 @@ const getCpuMove = context => {
 export const resolveActions = (playerMove, context) => {
   const cpuMove = getCpuMove(context);
   const actionsResult = RESOLVE_MATRIX[playerMove][cpuMove](context);
-  const player = actionsResult.player || {};
-  const computer = actionsResult.computer || {};
+  const player = actionsResult.player || context.player;
+  const computer = actionsResult.computer || context.computer;
   return {
     ...actionsResult,
     player: { ...player, lastAction: playerMove },
