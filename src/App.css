@@ -22,11 +22,45 @@
   align-items: center
 }
 
+.round-counter {
+  margin-top: 15px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.winner {
+  margin-top: 20px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .controls {
-  margin-top: 150px;
+  margin-top: 50px;
   display: flex;
   flex:1;
   align-content: center;
   justify-content: center;
+}
+
+.action-button {
+  background-color: white;
+  height: 100px;
+  width: 200px;
+  font-weight: 800;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon {
+  width: 40px;
 }
 
