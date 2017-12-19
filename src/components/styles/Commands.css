@@ -1,0 +1,19 @@
+.action-wrapper {
+    display: flex;
+    flex-direction: row
+}
+.action-button {
+    background-color: white;
+    height: 100px;
+    width: 200px;
+    font-weight: 800;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.icon {
+    width: 40px;
+}
