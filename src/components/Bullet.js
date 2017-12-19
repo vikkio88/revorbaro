@@ -11,7 +11,7 @@ export const Bullet = ({ loaded }) => (
 
 const styles = {
     bulletIcon: {
-        width: '40px'
+        width: '80px'
     },
     empty: {
         opacity: '0.2'

@@ -21,6 +21,6 @@ export const LastAction = ({ action }) => (
 
 const styles = {
     bulletIcon: {
-        width: '40px'
+        width: '45px'
     }
 };
